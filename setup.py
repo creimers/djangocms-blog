@@ -52,8 +52,6 @@ setup(
         'south>=1.0.1',
     ],
     extras_require={
-      ":python_version=='3.3'": ['django-select2-py3'],
-      ":python_version=='3.4'": ['django-select2-py3'],
       ":python_version=='2.6'": ['django-select2'],
       ":python_version=='2.7'": ['django-select2'],
     },
