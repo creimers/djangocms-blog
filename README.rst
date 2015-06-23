@@ -3,22 +3,21 @@ djangocms-blog
 ==============
 
 
-.. image:: https://pypip.in/v/djangocms-blog/badge.png
+.. image:: https://img.shields.io/pypi/v/djangocms-blog.svg
         :target: https://pypi.python.org/pypi/djangocms-blog
         :alt: Latest PyPI version
-    
-.. image:: https://travis-ci.org/nephila/djangocms-blog.png?branch=master
+
+.. image:: https://img.shields.io/travis/nephila/djangocms-blog.svg
         :target: https://travis-ci.org/nephila/djangocms-blog
         :alt: Latest Travis CI build status
 
-.. image:: https://pypip.in/d/djangocms-blog/badge.png
+.. image:: https://img.shields.io/pypi/dm/djangocms-blog.svg
         :target: https://pypi.python.org/pypi/djangocms-blog
         :alt: Monthly downloads
 
-.. image:: https://coveralls.io/repos/nephila/djangocms-blog/badge.png?branch=master
-        :target: https://coveralls.io/r/nephila/djangocms-blog?branch=master
+.. image:: https://coveralls.io/repos/nephila/djangocms-blog/badge.png
+        :target: https://coveralls.io/r/nephila/djangocms-blog
         :alt: Test coverage
-
 
 
 A djangoCMS 3 blog application.
@@ -28,7 +27,6 @@ you encounter any issue, please open an issue.
 
 Supported Django versions:
 
-* Django 1.5
 * Django 1.6
 * Django 1.7
 
@@ -115,6 +113,21 @@ suited for your deployment.
     )
     META_SITE_PROTOCOL = 'http'
     META_USE_SITES = True
+    
+* If you are using Django 1.7, be aware than ``filer``, ``cmsplugin_filer``
+  and ``django-cms`` currently requires you to setup ``MIGRATION_MODULES`` in settings::
+  
+    MIGRATION_MODULES = {
+       'cms': 'cms.migrations_django',
+       'menus': 'menus.migrations_django',
+       'filer': 'filer.migrations_django',
+       'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
+    }
+    
+  Please check
+  `django CMS installation <http://django-cms.readthedocs.org/en/support-3.0.x/how_to/integrate.html#installing-and-configuring-django-cms-in-your-django-project>`_,
+  `cmsplugin-filer README <https://github.com/stefanfoulis/cmsplugin-filer#installation>`_
+  for detailed information.
 
 * Configure parler according to your languages::
 
@@ -130,13 +143,22 @@ suited for your deployment.
 
     url(r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
 
-* To start your blog create a new page from the CMS and hook it to the blog application:
+* To start your blog you need to use `AppHooks from django CMS <http://django-cms.readthedocs.org/en/support-3.0.x/how_to/apphooks.html>`_ 
+  to add the blog to a django CMS page:
  
   * Create a new django CMS page
-  * Go to Advanced settings and sele select Blog from the Application selector;
+  * Go to Advanced settings and select Blog from the Application selector;
   * Eventually customise the Application instance name;
   * Restart the project instance to properly load blog urls.
 
+* Add and edit blog by creating them in the admin or using the toolbar,
+  and the use the `django CMS frontend editor <http://django-cms.readthedocs.org/en/support-3.0.x/user/reference/page_admin.html#the-interface>`_
+  to edit the blog content:
+  
+  * Create a new blog entry in django admin backend or from the toolbar
+  * Click on "view on site" button to view the post detail page
+  * Edit the post via djangocms frontend by adding / editing plugins
+  * Publish the blog post by flagging the "Publish" switch in the blog post admin
 
 Templates
 +++++++++
@@ -202,7 +224,8 @@ Social media tags settings
 * BLOG_GPLUS_TYPE: Google+ Snippet type for the post object; (default: Blog)
 * BLOG_GPLUS_AUTHOR: Google+ account of the post author
 
-.. image:: https://d2weczhvl823v0.cloudfront.net/nephila/djangocms-blog/trend.png
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
 
+Known djangocms-blog websites
++++++++++++++++++++++++++++++
+
+* http://nephila.co.uk/blog

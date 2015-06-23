@@ -39,9 +39,8 @@ setup(
     install_requires=[
         'django-parler>=1.2',
         'django-cms>=3.0',
-        'django-taggit',
+        'django-taggit>=0.12.2',
         'django-filer',
-        'django-select2' if sys.version_info[0]==2 else 'django-select2-py3',
         'pytz',
         'django-taggit-templatetags',
         'django-taggit-autosuggest',
@@ -52,6 +51,12 @@ setup(
         'django-meta-mixin>=0.1.1',
         'south>=1.0.1',
     ],
+    extras_require={
+      ":python_version=='3.3'": ['django-select2-py3'],
+      ":python_version=='3.4'": ['django-select2-py3'],
+      ":python_version=='2.6'": ['django-select2'],
+      ":python_version=='2.7'": ['django-select2'],
+    },
     license="BSD",
     zip_safe=False,
     keywords='djangocms-blog, blog, django, wordpress, multilingual',
