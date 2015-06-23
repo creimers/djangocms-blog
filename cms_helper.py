@@ -76,9 +76,7 @@ HELPER_SETTINGS = {
         'django.contrib.messages.middleware.MessageMiddleware',
     ],
     'MIGRATION_MODULES': {
-        'filer': 'filer.migrations_django',
         'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
-        'djangocms_text_ckeditor': 'djangocms_text_ckeditor.migrations_django',
     },
     'META_SITE_PROTOCOL': 'http',
     'META_SITE_DOMAIN': 'example.com',

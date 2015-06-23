@@ -22,9 +22,6 @@ djangocms-blog
 
 A djangoCMS 3 blog application.
 
-Still experimental and untested. You are welcome if you want to try it; if
-you encounter any issue, please open an issue.
-
 Supported Django versions:
 
 * Django 1.6
@@ -32,7 +29,7 @@ Supported Django versions:
 
 Supported django CMS versions:
 
-* django CMS 3.0
+* django CMS 3.x
 
 .. warning:: Starting from version 0.3 the length of the meta_description and
              meta_title fields has been changed according to the most common
@@ -45,10 +42,9 @@ Supported django CMS versions:
              argument. Templates has been changed to use a context variable
              instead. Please update your plugin templates accordingly.
 
-.. warning:: To ease migration to version 0.3, djangocms-blog depends on south
-             even on Django 1.7; while this is unnecessary for Dajngo 1.7, it
-             makes transition to version 0.3 painless. Hard dependency will be
-             removed in 0.5.
+.. warning:: Starting from version 0.5, this package does not declare dependency
+             on South anymore; please install it separately if using this
+             application on Django 1.6.
 
 
 Quickstart
@@ -114,13 +110,13 @@ suited for your deployment.
     META_SITE_PROTOCOL = 'http'
     META_USE_SITES = True
     
-* If you are using Django 1.7, be aware than ``filer``, ``cmsplugin_filer``
-  and ``django-cms`` currently requires you to setup ``MIGRATION_MODULES`` in settings::
+* If you are using Django 1.7, be aware than ``filer`` < 0.9.10, ``cmsplugin_filer``
+  and ``django-cms`` < 3.1 currently requires you to setup ``MIGRATION_MODULES`` in settings::
   
     MIGRATION_MODULES = {
-       'cms': 'cms.migrations_django',
-       'menus': 'menus.migrations_django',
-       'filer': 'filer.migrations_django',
+       'cms': 'cms.migrations_django', # only for django CMS 3.0
+       'menus': 'menus.migrations_django',  # only for django CMS 3.0
+       'filer': 'filer.migrations_django',  # only for django filer 0.9.9 and below
        'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
     }
     
@@ -229,3 +225,4 @@ Known djangocms-blog websites
 +++++++++++++++++++++++++++++
 
 * http://nephila.co.uk/blog
+* https://blog.ungleich.ch/
